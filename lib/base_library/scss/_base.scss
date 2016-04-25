@@ -1,0 +1,25 @@
+@charset "utf-8";
+// 这个文件是新建项目时默认引用的css样式文件，所有活动页面的字体单位全部使用rem
+//背景图片处理
+@mixin backgroundImg($value) {
+    background: $value no-repeat;
+    background-size: 100% auto;
+}
+
+//超出多少像素则显示省略号
+@mixin omitWord($value) {
+    width: $value;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+//在使用雪碧图的时候计算放大倍数
+@function percent($new, $old) {
+    @return ($new / $old) * 100%;
+}
+
+//将px转换成rem
+@function pxToRem($n) {
+    @return ($n / 32) + rem;
+}

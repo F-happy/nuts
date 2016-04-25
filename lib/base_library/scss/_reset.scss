@@ -1,0 +1,32 @@
+@charset "utf-8";
+/*- reset -*/
+$prefix-context: -webkit;
+html {
+    -webkit-text-size-adjust: none;
+    -webkit-appearance: none;
+}
+
+html, body, div, p, header {
+    @include reset-box-model;
+    @include reset-font;
+}
+
+html {
+    @include reset-body;
+    font-family: Helvetica, sans-serif;
+}
+
+/**
+ *  移动设备常用mediaquery
+ *  应用于1024px以下设备
+ *  移动设备的基本字体为16px
+ */
+$list: (32: (640, 1023), 20.7: (640, 1023), 19.2: (640, 1023), 18.75: (640, 1023), 18: (640, 1023), 16: (640, 1023));
+
+@each $size, $sizeList in $list {
+    @media screen and (min-width: #{nth($sizeList,1)}px) and (max-width: #{nth($sizeList,2)}px) {
+        html {
+            font-size: #{$size}px;
+        }
+    }
+}
