@@ -1,7 +1,7 @@
 {
-  "name": "nuts",
+  "name": "wishbao",
   "version": "0.1.0",
-  "description": "This project is to nuts gulp work.",
+  "description": "This project is to wishbao gulp work.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
