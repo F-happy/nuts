@@ -28,7 +28,7 @@ const config = {
     'author': 'jonnyf',
 
     // 公共基础库
-    'baseLibrary': 'base_library/',
+    'baseLibrary': '',
 
     // 默认的CDN路径
     'staticURL': 'http://cdn.jonnyf.com/duobao'

@@ -1,5 +1,8 @@
-# Byte-compiled / optimized / DLL files
-
 node_modules/
 .idea/
 .DS_Store
+npm-debug.log
+nuts/
+gulpfile.js.example
+gulpfile.js
+src/
