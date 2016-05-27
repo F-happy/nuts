@@ -5,8 +5,6 @@
 'use strict';
 
 const config = {
-    // 判断是否启动ES6模式
-    'es6': true,
 
     // 判断是否是活动项目
     'activity': false,
@@ -33,7 +31,7 @@ const config = {
     'baseLibrary': 'base_library/',
 
     // 默认的CDN路径
-    'staticURL': 'http://cdn.jonnyf.com/duobao-activity'
+    'staticURL': 'http://cdn.jonnyf.com/duobao'
 };
 
 //引入gulp的入口文件
