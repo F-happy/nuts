@@ -6,3 +6,5 @@ nuts/
 gulpfile.js.example
 gulpfile.js
 src/
+dist/
+.sass-cache/
