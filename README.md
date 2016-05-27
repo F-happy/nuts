@@ -9,11 +9,10 @@
     --- nuts 这个目录是gulp的任务和配置目录
         --- task 任务目录
         --- util 工具目录
-        --- config.js.example 这个是开发模式下的配置文件，部署的时候不使用该文件
         --- main.js gulp的入口文件
     --- src 源代码目录，所有的源代码都托管在这里
             --- test 具体的活动目录
-    --- gulpfile.js gulp的开始文件
+    --- gulpfile.js gulp的开始文件以及开发模式下的配置文件
     --- package.json 项目的依赖说明文件，可用于初始化项目和安装依赖包
     --- README.md 项目的说明文件
     
@@ -32,11 +31,6 @@
 -	nodejs运行环境  
     * 由于部分脚本使用ES6开发，所以请安装最新版本的node。
 
->	    apt-get update
->       add-apt-repository ppa:chris-lea/node.js
->       apt-get update
->       apt-get install nodejs
-
 -   安装gulp工具
 
     -   npm install
@@ -49,7 +43,7 @@
     - 例如： gulp build --dir test
     - 如果需要编译出指定版本请在后面添加 --ver 参数
     - 例如： gulp build --dir test --ver 1.2.0
-    - 服务器需要修改gulp文件夹中的config文件为线上信息
+    - 服务器需要修改gulpfile文件为线上信息
     
 #### 关于CDN：cdn根目录的子目录duobao-activity/指向dist/static/
     * cdn 目录下项目中包含的图片，字体，css和js文件都会缓存
@@ -63,7 +57,7 @@
 
 * 安装完成后即可通过gulp命令来进行开发了，执行gulp dev 命令进入开发模式。
 * 当前项目监听端口号2333，在浏览器中打开 http://localhost:2333 即可看到当前项目页面。
-* 在开发一个活动前需要将gulp/config.js.example文件复制出一份并删除后缀中的.example。
+* 在开发一个活动前需要将gulpfile.js.example文件复制出一份并删除后缀中的.example。
 * 关于具体配置的内容，在文件中都有相关的说明。
 
 ## 前端代码开发规范
@@ -79,6 +73,3 @@
 * 如果发现线上bug时需要在master分支上新开hotfix分支进行修正。
 
 [git-flow]: http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html
-
-
-

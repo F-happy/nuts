@@ -1,6 +1,6 @@
 {
     "name": "wishbao",
-    "version": "0.1.4",
+    "version": "0.1.6",
     "description": "This project is to wishbao gulp work.",
     "main": "index.js",
     "scripts": {
@@ -27,7 +27,6 @@
         "babel-core": "^6.9.0",
         "babel-loader": "^6.2.4",
         "babel-preset-es2015": "^6.9.0",
-        "commander": "^2.9.0",
         "del": "^2.2.0",
         "gulp": "^3.9.1",
         "gulp-compass": "^2.1.0",

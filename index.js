@@ -2,10 +2,17 @@
  * Created by fuhuixiang on 16/5/26.
  */
 'use strict';
-let fs      = require('fs'),
-    path    = require('path'),
-    program = require('commander'),
-    stat    = fs.stat;
+const fs       = require('fs'),
+      path     = require('path'),
+      minimist = require('minimist'),
+      stat     = fs.stat;
+
+let _build = minimist(process.argv.slice(2)).build;
+
+if (!!_build) {
+    // 复制目录
+    exists(path.resolve(__dirname, './lib'), process.cwd(), copy);
+}
 
 /**
  * 复制目录中的所有文件包括子目录
@@ -45,6 +52,12 @@ function copy(src, dst) {
     });
 }
 
+/**
+ * 判断路径是否存在
+ * @param src
+ * @param dst
+ * @param callback
+ */
 function exists(src, dst, callback) {
     fs.exists(dst, (exists)=> {
         // 已存在
@@ -56,28 +69,4 @@ function exists(src, dst, callback) {
             });
         }
     });
-}
-
-program
-    .allowUnknownOption()
-    .usage(' <command>');
-
-program
-    .command('setup')
-    .description('开始安装构建工具')
-    .action(()=> {
-        // 复制目录
-        exists(path.resolve(__dirname, './lib'), process.cwd(), copy);
-    });
-
-program.parse(process.argv);
-
-if (!program.args.length) {
-    program.help()
-}
-
-if (process.argv[2] != 'setup' &&
-    process.argv[2] != 'init'
-) {
-    program.help()
 }
