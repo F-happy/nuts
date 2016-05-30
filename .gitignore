@@ -3,7 +3,6 @@ node_modules/
 .DS_Store
 npm-debug.log
 nuts/
-gulpfile.js.example
 gulpfile.js
 src/
 dist/
