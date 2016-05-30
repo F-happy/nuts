@@ -30,10 +30,27 @@
 
 -	nodejs运行环境  
     * 由于部分脚本使用ES6开发，所以请安装最新版本的node。
+    * node >= 6.2.0 npm >= 3.8.9
 
--   安装gulp工具
+```
+    npm install -g n    
+    n stable
+```
 
-    -   npm install
+-   安装第三方依赖包
+
+```
+npm install 
+```
+
+-   运行初始化命令
+
+```
+npm run release
+```
+
+-   修改配置文件
+> 复制gulpfile.js.example为gulpfile.js，并将之前的CDN路径填写到新配置文件中的staticURL字段中。
 
 ### 如何部署代码？
 
