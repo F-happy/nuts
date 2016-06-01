@@ -7,11 +7,16 @@ const fs       = require('fs'),
       minimist = require('minimist'),
       stat     = fs.stat;
 
-let _build = minimist(process.argv.slice(2)).build;
+let _build   = minimist(process.argv.slice(2)).build,
+    _release = minimist(process.argv.slice(2)).release;
 
 if (!!_build) {
     // 复制目录
     exists(path.resolve(__dirname, './lib'), process.cwd(), copy);
+}
+
+if (!!_release){
+    exists('./nuts', './lib/nuts', copy);
 }
 
 /**

@@ -34,9 +34,19 @@ const config = {
     'staticURL': 'http://cdn.jonnyf.com/duobao'
 };
 
+const webpack = {
+    test: /\.js$/,
+    loader: 'babel-loader',
+    exclude: './node_modules/',
+    query: {
+        presets: ['es2015']
+    }
+};
+
 //引入gulp的入口文件
 let nuts = require('./nuts/main');
 
 nuts.config = config;
+nuts.webpack = webpack;
 
 nuts.run();

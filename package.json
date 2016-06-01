@@ -1,11 +1,11 @@
 {
   "name": "wishbao",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "This project is to wishbao gulp work.",
   "main": "index.js",
   "scripts": {
     "test": "node index --build",
-    "release": "echo \"Error: no test specified\" && exit 1"
+    "release": "node index --release"
   },
   "repository": {
     "type": "git",
@@ -37,7 +37,6 @@
     "gulp-replace": "^0.5.4",
     "gulp-webpack": "^1.5.0",
     "minimist": "^1.2.0",
-    "node-dir": "^0.1.12",
     "through2": "^2.0.1"
   },
   "devDependencies": {
