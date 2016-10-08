@@ -99,7 +99,7 @@ function outDist(buildDir, nowVersion, devDir) {
                 .pipe(printMes('css'))
                 .pipe(plumberPlugin())
                 .pipe(sassPlugin({
-                    includePaths: sassList,
+                    includePaths: inputList,
                     outputStyle: 'compressed'
                 }))
                 .pipe(taskIf(config.needCDN, replacePlugin({

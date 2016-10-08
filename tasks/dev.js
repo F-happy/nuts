@@ -104,7 +104,7 @@ function compassSass(input, output) {
     task.src(input)
         .pipe(plumberPlugin())
         .pipe(sassPlugin({
-            includePaths: sassList
+            includePaths: inputList
         }))
         .pipe(connectPlugin.reload())
         .pipe(task.dest(output));
