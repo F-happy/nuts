@@ -1,0 +1,16 @@
+{
+    "serverPort": 2333,
+    "sourceDir": "test/test_dev",
+    "distDir": "test/dist",
+    "staticDir": "static",
+    "name": "test",
+    "author": "jonnyf",
+    "title": "testTitle",
+    "devDir": "test/test_dev",
+    "needCDN": true,
+    "staticURL": "http://cdn.jonnyf.com/duobao",
+    "replaceStr": 666,
+    "sassLib": [
+        "nuts-scss"
+    ]
+}

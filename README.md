@@ -1,4 +1,5 @@
 # Nuts 前端构建工具
+[![Build Status](https://travis-ci.org/F-happy/nuts.svg?branch=develop)](https://travis-ci.org/F-happy/nuts)
 [![npm](https://img.shields.io/npm/v/wishbao.svg?style=flat)](https://www.npmjs.com/package/wishbao)
 [![npm](https://img.shields.io/npm/l/wishbao.svg?style=flat)](https://www.npmjs.com/package/wishbao)
 [![npm](https://img.shields.io/npm/dt/wishbao.svg?style=flat)](https://www.npmjs.com/package/wishbao)

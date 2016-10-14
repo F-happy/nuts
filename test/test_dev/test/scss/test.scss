@@ -1,0 +1,29 @@
+@charset "utf-8";
+@import "nuts-scss";
+
+$testImage: url(../images/test/test.png);
+
+$prefix-list: webkit;
+
+.test {
+    @include box();
+    @include border-box(100px);
+    @include animation(marquee 2s ease 0s 1);
+    @extend %border-1px;
+    @include transform(translate3d(0, 0, 0));
+    @include animation(down .3s ease-out 0s 1);
+    @include clearfix();
+}
+
+@include keyframes(down) {
+    0% {
+        @include transform(translate3d(0, -100%, 0));
+    }
+    100% {
+        @include transform(translate3d(0, 0, 0));
+    }
+}
+
+.test-img {
+    @include backgroundImg($testImage);
+}

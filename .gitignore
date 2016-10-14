@@ -2,11 +2,10 @@ node_modules/
 .idea/
 .DS_Store
 npm-debug.log
-gulpfile.js
 src/
 dist/
 .sass-cache/
-nuts/
-!lib/nuts
 dev/
+test/src
+test/dist
 nuts.config.json
