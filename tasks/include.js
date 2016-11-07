@@ -13,7 +13,9 @@ const fs            = require('fs'),
 
 module.exports = (proName)=> {
 
-    let devDir = `${config.sourceDir}/${proName}`;
+    let devDir       = `${config.sourceDir}/${proName}`,
+        firstInclude = true,
+        _staticData  = '';
 
     if (!proName) {
         console.log('请输入项目名称');
@@ -26,30 +28,39 @@ module.exports = (proName)=> {
      * 最后在主 scss 文件中引入新建的静态资源文件。
      */
     firFiles(`${devDir}/images/`, (err, files)=> {
-        let _staticData = '@charset "utf-8";\n';
+        _staticData = '@charset "utf-8";\n';
         if (err) {
             console.log(`${err.path}目录不存在`);
             return null;
         }
-        files.forEach((v)=> {
-            let _name = path.basename(v);
-            _staticData += `$static${path.basename(_name, path.extname(_name)).replace(/(\w)/, v=> v.toUpperCase())}: url(../images/${_name}); \n`;
-        });
-        if (!!_staticData) {
-            fs.appendFile(`${devDir}/scss/_static.scss`, _staticData, 'utf8', (err)=> {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log('_static文件创建完成');
-                    task.src(`${devDir}/scss/${path.basename(proName)}.scss`)
-                        .pipe(replacePlugin({
-                            '@charset "utf-8";': `@charset "utf-8";\n@import "static";`,
-                        }))
-                        .pipe(task.dest(`${devDir}/scss/`));
+        fs.readFile(`${devDir}/scss/_static.scss`, 'utf8', (err, data)=> {
+            if (!err) {
+                _staticData = data.toString();
+                firstInclude = false;
+            }
+            files.forEach((v)=> {
+                let _name     = v.split(`${devDir}/images/`)[1],
+                    writeText = `$${_name.match(/(\w+)\.\w+$/)[1].replace(/_/g, '-')}: url(../images/${_name}); \n`;
+                if (_staticData.indexOf(writeText) === -1) {
+                    _staticData += writeText;
                 }
             });
-        } else {
-            console.log(`目录内没有静态资源`);
-        }
+            if (!!_staticData) {
+                fs.writeFile(`${devDir}/scss/_static.scss`, _staticData, 'utf8', (err)=> {
+                    if (err) {
+                        console.log(err);
+                    } else if (firstInclude) {
+                        console.log('_static文件创建完成');
+                        task.src(`${devDir}/scss/${path.basename(proName)}.scss`)
+                            .pipe(replacePlugin({
+                                '@charset "utf-8";': `@charset "utf-8";\n@import "static";`,
+                            }))
+                            .pipe(task.dest(`${devDir}/scss/`));
+                    }
+                });
+            } else {
+                console.log(`目录内没有静态资源`);
+            }
+        });
     });
 };
