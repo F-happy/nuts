@@ -14,22 +14,25 @@ const fs            = require('fs'),
       renamePlugin  = require('gulp-rename'),
       streamPlugin  = require('webpack-stream'),
       replacePlugin = require('gulp-replace-pro'),
+      taskIf        = require('../utils/task_if'),
       webConfig     = require('../utils/get_wp_config')('dev'),
       config        = require(path.resolve(process.cwd(), 'nuts.config.json'));
-let devDirList = [];
+let devDirList = [],
+    styleType  = 'css';
 
-module.exports = (proName, port)=> {
+module.exports = (proName, port) => {
 
-    let devDir = `${config.sourceDir}/${proName}`,
-        outDir = `${config.devDir}/${proName}`;
+    let devDir    = `${config.sourceDir}/${proName}`,
+        outDir    = `${config.devDir}/${proName}`,
+        styleType = config.styleType === 'scss' ? 'scss' : 'css';
 
-    server({name: proName, port: port}, ()=> {
+    server({name: proName, port: port}, () => {
         //初始化函数
         devDirList = fs.readdirSync(devDir);
-        if (devDirList.indexOf('scss') != -1) {
-            compassSass(`${devDir}/scss/*.scss`, `${outDir}/css`);
+        if (devDirList.indexOf(styleType) != -1) {
+            compassStyle(`${devDir}/${styleType}/*.${styleType}`, `${outDir}/css`);
         } else {
-            console.log('scss路径不存在');
+            console.log(`${styleType}路径不存在`);
         }
 
         if (devDirList.indexOf('js') != -1) {
@@ -64,33 +67,33 @@ module.exports = (proName, port)=> {
 function taskWatch(devDir, outDir, proName) {
 
     //监控js代码是否改变
-    task.watch(`${devDir}/js/*.js`).on('all', (event, filePath, stats)=> {
+    task.watch(`${devDir}/js/*.js`).on('all', (event, filePath, stats) => {
         console.log(`文件 ${filePath} 触发 ${event} 事件，重新编译中。。。`);
         es6ToEs5(filePath, `${outDir}/js`, path.basename(proName));
     });
 
     //监控样式表是否改动
-    task.watch(`${devDir}/scss/*.scss`).on('all', (event, filePath, stats)=> {
+    task.watch(`${devDir}/${styleType}/*.${styleType}`).on('all', (event, filePath, stats) => {
         console.log(`文件 ${filePath} 触发 ${event} 事件，重新编译中。。。`);
         compassSass(filePath, `${outDir}/css`);
     });
 
     // 监控静态文件是否变更
-    task.watch(`${devDir}/*.html`).on('all', (event, filePath, stats)=> {
+    task.watch(`${devDir}/*.html`).on('all', (event, filePath, stats) => {
         console.log(`文件 ${filePath} 触发 ${event} 事件，重新编译中。。。`);
         compassFile(filePath, outDir);
     });
 }
 
 /**
- * 对项目中的 scss 文件进行编译
+ * 对项目中的样式文件进行编译
  * @param input
  * @param output
  */
-function compassSass(input, output) {
+function compassStyle(input, output) {
     let sassList  = config.sassLib || [],
         inputList = [];
-    sassList.forEach((v)=> {
+    sassList.forEach((v) => {
         if (!!path.parse(v).dir) {
             inputList.push(v);
         } else {
@@ -103,9 +106,7 @@ function compassSass(input, output) {
     });
     task.src(input)
         .pipe(plumberPlugin())
-        .pipe(sassPlugin({
-            includePaths: inputList
-        }))
+        .pipe(taskIf(styleType === 'scss', sassPlugin({includePaths: inputList})))
         .pipe(connectPlugin.reload())
         .pipe(task.dest(output));
 }
@@ -119,7 +120,7 @@ function compassSass(input, output) {
 function es6ToEs5(input, output, proName) {
     task.src(input)
         .pipe(plumberPlugin())
-        .pipe(streamPlugin(webConfig))
+        .pipe(taskIf(config.target === 'ES6', streamPlugin(webConfig)))
         .pipe(renamePlugin(`${proName}.min.js`))
         .pipe(replacePlugin('@@replace', config.replaceStr || ''))
         .pipe(connectPlugin.reload())

@@ -1,0 +1,24 @@
+/*- reset -*/
+html {
+    -webkit-text-size-adjust: none;
+    -webkit-appearance: none;
+}
+
+html, body, div, p, header, button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+html {
+    line-height: 1;
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+}
+
+body {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-overflow-scrolling: touch;
+}

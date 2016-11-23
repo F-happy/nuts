@@ -8,4 +8,7 @@ dist/
 dev/
 test/src
 test/dist
+test/test_dev/test_1
+test/test_dev/test_dir
+test/test_dev/test/scss/_static.scss
 nuts.config.json

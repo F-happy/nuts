@@ -58,8 +58,10 @@ function hasProject(name, callback) {
  */
 function checkBuild(num) {
     fs.readFile(path.resolve(process.cwd(), `./test/dist/static/test/${num}/css/test.css`), 'utf-8', (err, data)=> {
-        let rg = new RegExp('http://cdn.jonnyf.com/duobao', "g");
+        let rg = new RegExp('http://cdn.jonnyf.com/images', "g");
         if (err || !rg.test(data)) {
+            console.log(err);
+            console.log(!rg.test(data));
             throw new Error('CSS 资源编译失败');
         }
     });

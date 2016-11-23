@@ -52,9 +52,11 @@ function* createProject(devDir, name) {
         }))
         .pipe(task.dest(`${devDir}/`));
 
-    yield task.src(`${templetPath}/scss/main.scss`)
-        .pipe(renamePlugin(`${name}.scss`))
-        .pipe(task.dest(`${devDir}/scss`));
+    let styleType = config.styleType === 'scss' ? 'scss' : 'css';
+
+    yield task.src(`${templetPath}/${styleType}/main.${styleType}`)
+        .pipe(renamePlugin(`${name}.${styleType}`))
+        .pipe(task.dest(`${devDir}/${styleType}`));
 
     yield task.src(`${templetPath}/js/main.tmpl`)
         .pipe(replacePlugin({

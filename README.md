@@ -41,7 +41,8 @@ $ npm install -g wishbao
 
 #### 初始化项目：
 ```
-$ nuts init
+// 如果需要更新配置文件则需要添加 --update 参数
+$ nuts init [--update]
 ```
 
 #### 新建项目：
@@ -107,11 +108,21 @@ $ nuts include --name <项目名称>
 	// 默认的CDN路径
     "staticURL": "http://cdn.jonnyf.com/images",
 
-    "androidVer": 120,
+    // 代码中的字符串替换内容
+    "replaceStr": 666,
+
+    // html 文件的 title
+    "title": "exampleTitle",
+
+    // 样式预编译支持版本
+    "styleType": "css",
+
+    // JavaScript 版本
+    "target": "ES6",
 
 	// 引入的 sass 库,默认采用了 nuts-scss 库,使用时需要先安装。传入的值需要是一个数组。
     // 'sassLib': []
-    "sassLib": require('nuts-scss').includePaths
+    "sassLib": ["nuts-scss"]
 }
 ```
 

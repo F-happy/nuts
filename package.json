@@ -1,6 +1,6 @@
 {
   "name": "wishbao",
-  "version": "3.1.3",
+  "version": "3.2.0",
   "description": "This project is to nuts gulp workflow.",
   "main": "./bin/nuts.js",
   "scripts": {
@@ -26,9 +26,9 @@
   },
   "homepage": "https://github.com/F-happy/nuts#readme",
   "dependencies": {
-    "babel-core": "^6.16.0",
-    "babel-loader": "^6.2.5",
-    "babel-preset-es2015": "^6.16.0",
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-preset-es2015": "^6.18.0",
     "del": "^2.2.2",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-connect": "^5.0.0",
@@ -43,8 +43,8 @@
     "webpack-stream": "^3.2.0"
   },
   "devDependencies": {
-    "async": "^2.1.1",
-    "nuts-util": "^1.3.0",
-    "webpack": "^1.13.2"
+    "async": "^2.1.2",
+    "nuts-util": "^1.5.0",
+    "webpack": "^1.13.3"
   }
 }
