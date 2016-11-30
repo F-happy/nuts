@@ -18,13 +18,12 @@ const fs            = require('fs'),
       webConfig     = require('../utils/get_wp_config')('dev'),
       config        = require(path.resolve(process.cwd(), 'nuts.config.json'));
 let devDirList = [],
-    styleType  = 'css';
+    styleType  = config.styleType === 'scss' ? 'scss' : 'css';
 
 module.exports = (proName, port) => {
 
-    let devDir    = `${config.sourceDir}/${proName}`,
-        outDir    = `${config.devDir}/${proName}`,
-        styleType = config.styleType === 'scss' ? 'scss' : 'css';
+    let devDir = `${config.sourceDir}/${proName}`,
+        outDir = `${config.devDir}/${proName}`;
 
     server({name: proName, port: port}, () => {
         //初始化函数
