@@ -1,6 +1,6 @@
 {
   "name": "wishbao",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "This project is to nuts gulp workflow.",
   "main": "./bin/nuts.js",
   "scripts": {

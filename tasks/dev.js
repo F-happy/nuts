@@ -74,7 +74,7 @@ function taskWatch(devDir, outDir, proName) {
     //监控样式表是否改动
     task.watch(`${devDir}/${styleType}/*.${styleType}`).on('all', (event, filePath, stats) => {
         console.log(`文件 ${filePath} 触发 ${event} 事件，重新编译中。。。`);
-        compassSass(filePath, `${outDir}/css`);
+        compassStyle(filePath, `${outDir}/css`);
     });
 
     // 监控静态文件是否变更
