@@ -40,7 +40,7 @@ module.exports = (proName)=> {
             }
             files.forEach((v)=> {
                 let _name     = v.split(`${devDir}/images/`)[1],
-                    writeText = `$${_name.match(/(\w+)\.\w+$/)[1].replace(/_/g, '-')}: url(../images/${_name}); \n`;
+                    writeText = `$nuts_${_name.match(/(\w+)\.\w+$/)[1].replace(/_/g, '-')}: url(../images/${_name}); \n`;
                 if (_staticData.indexOf(writeText) === -1) {
                     _staticData += writeText;
                 }
