@@ -39,10 +39,17 @@ module.exports = (proName)=> {
                 firstInclude = false;
             }
             files.forEach((v)=> {
+                let imageInfo = fs.statSync(v);
                 let _name     = v.split(`${devDir}/images/`)[1],
-                    writeText = `$nuts_${_name.match(/(\w+)\.\w+$/)[1].replace(/_/g, '-')}: url(../images/${_name}); \n`;
-                if (_staticData.indexOf(writeText) === -1) {
-                    _staticData += writeText;
+                    writeText = `$nuts_${_name.match(/(\w+)\.\w+$/)[1].replace(/_/g, '-')}: url`,
+                    writeNext = '';
+                if (imageInfo.size <= 2048 && config.base64) {
+                    writeNext = writeText + `(data:image/png;base64,${new Buffer(fs.readFileSync(v)).toString('base64')}); \n`;
+                } else {
+                    writeNext = writeText + `(../images/${_name}); \n`;
+                }
+                if (_staticData.indexOf(writeNext) === -1) {
+                    _staticData += writeNext;
                 }
             });
             if (!!_staticData) {

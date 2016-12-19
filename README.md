@@ -120,6 +120,9 @@ $ nuts include --name <项目名称>
     // JavaScript 版本
     "target": "ES6",
 
+    // 静态资源转 base64
+    "base64": false,
+
 	// 引入的 sass 库,默认采用了 nuts-scss 库,使用时需要先安装。传入的值需要是一个数组。
     // 'sassLib': []
     "sassLib": ["nuts-scss"]

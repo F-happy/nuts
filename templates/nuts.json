@@ -12,5 +12,6 @@
     "replaceStr": 666,
     "styleType": "scss",
     "target": "ES6",
+    "base64": false,
     "sassLib": ["nuts-scss"]
 }
