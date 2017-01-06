@@ -45,10 +45,19 @@ module.exports = (buildDir, buildVer) => {
 function outDist(buildDir, nowVersion, devDir) {
 
     let distStaticDir = `${config.distDir}/${config.staticDir}/${buildDir}/${nowVersion}`,
-        staticURL     = config.needCDN ? config.staticURL : `../${config.staticDir}`,
+        staticURL     = '',
         buildCDNDir   = `${staticURL}/${buildDir}/${nowVersion}`,
         buildName     = path.basename(buildDir),
         styleType     = config.styleType === 'scss' ? 'scss' : 'css';
+
+    if (config.needCDN) {
+        staticURL = config.staticURL;
+    } else {
+        buildDir.split('/').forEach((v)=>{
+            staticURL += '../';
+        });
+        staticURL += config.staticDir;
+    }
 
     // 部署并压缩javaScript脚本文件
     fs.readdir(`${devDir}/js`, (err) => {

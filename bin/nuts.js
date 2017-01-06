@@ -7,6 +7,8 @@ const fs         = require('fs'),
       minimist   = require('minimist')(process.argv.slice(2)),
       configPath = path.resolve(process.cwd(), 'nuts.config.json');
 
+// taskController(require(configPath));
+
 fs.exists(configPath, (exists)=> {
     if (exists) {
         let nutsPath = path.resolve(process.cwd(), './node_modules/wishbao/bin');
