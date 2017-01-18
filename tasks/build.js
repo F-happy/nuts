@@ -46,7 +46,6 @@ function outDist(buildDir, nowVersion, devDir) {
 
     let distStaticDir = `${config.distDir}/${config.staticDir}/${buildDir}/${nowVersion}`,
         staticURL     = '',
-        buildCDNDir   = `${staticURL}/${buildDir}/${nowVersion}`,
         buildName     = path.basename(buildDir),
         styleType     = config.styleType === 'scss' ? 'scss' : 'css';
 
@@ -58,6 +57,8 @@ function outDist(buildDir, nowVersion, devDir) {
         });
         staticURL += config.staticDir;
     }
+
+    const buildCDNDir = `${staticURL}/${buildDir}/${nowVersion}`;
 
     // 部署并压缩javaScript脚本文件
     fs.readdir(`${devDir}/js`, (err) => {
