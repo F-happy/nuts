@@ -14,6 +14,7 @@ const fs            = require('fs'),
       plumberPlugin = require('gulp-plumber'),
       streamPlugin  = require('webpack-stream'),
       replacePlugin = require('gulp-replace-pro'),
+      touch         = require('../utils/touch'),
       taskIf        = require('../utils/task_if'),
       printMes      = require('../utils/task_print'),
       getVersion    = require('../utils/get_now_version'),
@@ -129,5 +130,6 @@ function outDist(buildDir, nowVersion, devDir) {
             'src="js/': `src="${buildCDNDir}/js/`,
             'src="images/': `src="${buildCDNDir}/images/`
         }))
-        .pipe(task.dest(`${config.distDir}/${buildDir}/`));
+        .pipe(task.dest(`${config.distDir}/${buildDir}/`))
+        .pipe(touch());
 }
